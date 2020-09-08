@@ -1,0 +1,77 @@
+/*
+  Copyright 2019 www.dev5.cn, Inc. dev5@qq.com
+ 
+  This file is part of X-MSG-IM.
+ 
+  X-MSG-IM is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  X-MSG-IM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU Affero General Public License
+  along with X-MSG-IM.  If not, see <https://www.gnu.org/licenses/>.
+ */
+syntax = "proto3";
+
+message XmsgMscCfgPb
+{
+    string cgt = 1; 
+    XmsgMscCfgLog log = 2; 
+    XmsgMscCfgXscTcpServer pub = 3; 
+    XmsgMscCfgXscTcpServer pri = 4; 
+    repeated XmsgMscCfgXmsgMsc superior = 5; 
+    repeated XmsgMscCfgXmsgNe subordinate = 6; 
+    repeated XmsgMscCfgXmsgNe n2h = 7; 
+    map<string, string> kafkaProd = 9; 
+    XmsgMscCfgMisc misc = 8; 
+}
+
+message XmsgMscCfgLog
+{
+    string level = 1; 
+    string output = 2; 
+}
+
+message XmsgMscCfgXscTcpServer
+{
+    string addr = 1; 
+    uint32 worker = 2; 
+    uint32 peerLimit = 3; 
+    uint32 peerMtu = 4; 
+    uint32 peerRcvBuf = 5; 
+    uint32 peerSndBuf = 6; 
+    uint32 lazyClose = 7; 
+    bool tracing = 8; 
+    uint32 heartbeat = 9; 
+    uint32 n2hZombie = 10; 
+    uint32 n2hTransTimeout = 11; 
+    bool n2hTracing = 12; 
+    uint32 h2nReConn = 13; 
+    uint32 h2nTransTimeout = 14; 
+}
+
+message XmsgMscCfgXmsgNe
+{
+    string neg = 1; 
+    string cgt = 2; 
+    string pwd = 3; 
+    string addr = 4; 
+}
+
+message XmsgMscCfgXmsgMsc
+{
+    string cgt = 1; 
+    string addr = 2; 
+    string pwd = 3; 
+    string alg = 4; 
+}
+
+message XmsgMscCfgMisc
+{
+    uint32 runMode = 1; 
+}
